@@ -481,7 +481,7 @@ function App() {
               <div className="flex flex-col space-y-4">
                 <div className="flex items-center">
                   <Phone className="h-5 w-5 text-[#bd0811] mr-3" />
-                  <span>(85) 99759-9275</span>
+                  <span>(85) 98733-8532</span>
                 </div>
                 <div className="flex items-center">
                   <Mail className="h-5 w-5 text-[#bd0811] mr-3" />
