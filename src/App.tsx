@@ -64,14 +64,14 @@ function App() {
       name: 'Davyd Brasil',
       position: 'Representante de Vendas',
       phone: '+5585997870923',
-      image: '/src/assets/davyd.jpg',
+      image: '/assets/davyd.jpg',
     },
     {
       id: 2,
       name: 'João Pedro Monteiro',
       position: 'Representante de Vendas',
       phone: '+5585997599275',
-      image: '/src/assets/joaopedro.jpg',
+      image: '/assets/joaopedro.jpg',
     },
   ];
 
@@ -118,7 +118,7 @@ function App() {
           <div className="flex items-center">
             <div className="relative h-12 w-40">
               <img
-                src="/src/assets/logo-ceplast.png"
+                src="/assets/logo-ceplast.png"
                 alt="Ceplast Logo"
                 className="h-full w-full object-contain"
               />
@@ -253,7 +253,7 @@ function App() {
               <div className="md:w-1/3">
                 <div className="relative w-64 h-64 mx-auto overflow-hidden rounded-full border-4 border-[#010066]">
                   <img
-                    src="/src/assets/monteiro.png"
+                    src="/assets/monteiro.png"
                     alt="Diretor da Ceplast"
                     className="w-full h-full object-cover"
                     style={{ transform: 'scale(1.2)' }}
@@ -322,23 +322,23 @@ function App() {
             {[
               {
                 name: 'Queijo Coalho',
-                image: '/src/assets/queijo-coalho.jpeg',
+                image: '/assets/queijo-coalho.jpeg',
               },
               {
                 name: 'Queijo Mussarela',
-                image: '/src/assets/queijo-mussarela.jpg',
+                image: '/assets/queijo-mussarela.jpg',
               },
               {
                 name: 'Macaxeira',
-                image: '/src/assets/macaxeira.jpg',
+                image: '/assets/macaxeira.jpg',
               },
               {
                 name: 'Linguiça',
-                image: '/src/assets/linguica.jpeg',
+                image: '/assets/linguica.jpeg',
               },
               {
                 name: 'Carnes',
-                image: '/src/assets/picanha.jpeg',
+                image: '/assets/picanha.jpeg',
               },
               {
                 name: 'Outros Itens',
