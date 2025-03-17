@@ -1,5 +1,3 @@
-'use client';
-
 import type React from 'react';
 import { useEffect, useRef } from 'react';
 import {
@@ -39,10 +37,8 @@ interface ProcessStep {
 }
 
 function App() {
-  // Ref for the animation container
   const animationRef = useRef<HTMLDivElement>(null);
 
-  // Animation effect for the showcase section
   useEffect(() => {
     const animateElements = () => {
       if (!animationRef.current) return;
@@ -59,7 +55,6 @@ function App() {
 
     animateElements();
 
-    // Re-trigger animation on scroll into view
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -95,7 +90,7 @@ function App() {
       description:
         'Encolhe com calor, selando o produto com segurança e transparência. Protege contra umidade, poeira e adulterações.',
       applications: 'Frigoríficos, laticínios, lacres',
-      image: '/assets/termoencolhivel.jpg',
+      image: '/assets/mussarela.jpg',
     },
     {
       id: 3,
@@ -241,10 +236,10 @@ function App() {
               </li>
               <li>
                 <a
-                  href="#aplicacoes"
+                  href="#tipos-embalagem"
                   className="text-[#010066] hover:text-[#bd0811] transition-colors"
                 >
-                  Aplicações
+                  Tipos de Acabamento
                 </a>
               </li>
               <li>
@@ -274,8 +269,11 @@ function App() {
         </div>
       </header>
 
-      {/* Showcase Section with Simplified Animation */}
-      <section className="relative bg-gradient-to-r from-[#010066] to-[#01004d] py-16 overflow-hidden">
+      {/* Showcase Section */}
+      <section
+        id="inicio"
+        className="relative bg-gradient-to-r from-[#010066] to-[#01004d] py-16 overflow-hidden"
+      >
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-[url('/placeholder.svg?height=800&width=1600')] bg-cover bg-center"></div>
         </div>
@@ -380,6 +378,119 @@ function App() {
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Packaging Types Section */}
+      <section id="tipos-embalagem" className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center text-[#010066] mb-12">
+            Tipos de Acabamento
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {/* Printed Packaging Card */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="flex flex-col h-full">
+                <div className="bg-[#bd0811] text-white p-4">
+                  <h3 className="text-xl font-bold">Embalagens Impressas</h3>
+                </div>
+                <div className="p-6 flex flex-col md:flex-row gap-6 flex-grow">
+                  <div className="md:w-1/2">
+                    <p className="text-gray-700 mb-4">
+                      Embalagens personalizadas com sua marca, informações
+                      nutricionais, códigos de barras e elementos visuais que
+                      destacam seu produto no mercado.
+                    </p>
+                    <ul className="space-y-2">
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-[#bd0811] mr-2 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm">
+                          Personalização completa com até 10 cores
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-[#bd0811] mr-2 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm">
+                          Fortalecimento da identidade da marca
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-[#bd0811] mr-2 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm">
+                          Destaque nas prateleiras do varejo
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="md:w-1/2">
+                    <div className="h-40 md:h-full overflow-hidden rounded-lg">
+                      <img
+                        src="/assets/impresso.jpeg"
+                        alt="Embalagem Impressa"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = '/placeholder.svg?height=300&width=400';
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Plain Packaging Card */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden border border-gray-100 hover:shadow-md transition-shadow">
+              <div className="flex flex-col h-full">
+                <div className="bg-[#010066] text-white p-4">
+                  <h3 className="text-xl font-bold">Embalagens Lisas</h3>
+                </div>
+                <div className="p-6 flex flex-col md:flex-row gap-6 flex-grow">
+                  <div className="md:w-1/2">
+                    <p className="text-gray-700 mb-4">
+                      Embalagens sem impressão, ideais para uso interno, testes
+                      de produto ou quando você precisa de uma solução rápida e
+                      econômica.
+                    </p>
+                    <ul className="space-y-2">
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-[#010066] mr-2 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm">
+                          Excelente custo-benefício
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-[#010066] mr-2 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm">
+                          Prazos de entrega reduzidos
+                        </span>
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-[#010066] mr-2 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm">
+                          Mesma qualidade de proteção e conservação
+                        </span>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="md:w-1/2">
+                    <div className="h-40 md:h-full overflow-hidden rounded-lg">
+                      <img
+                        src="/assets/liso.jpeg"
+                        alt="Embalagem Lisa"
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = '/placeholder.svg?height=300&width=400';
+                        }}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

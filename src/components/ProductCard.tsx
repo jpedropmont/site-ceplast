@@ -4,7 +4,6 @@ import {
   ShoppingBag,
   Utensils,
   Droplet,
-  ArrowRight,
   Box,
   Shield,
   Heart,
@@ -93,36 +92,28 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div className="p-5 flex-grow flex flex-col justify-between">
         <div>
           <p className="text-gray-700 text-sm mb-4">{product.description}</p>
-
-          <div className="mb-5">
-            <h4 className="text-sm font-semibold text-[#010066] mb-2">
-              Aplicações:
-            </h4>
-            <ul className="space-y-1.5">
-              {applicationsList.map((app, index) => (
-                <li
-                  key={index}
-                  className={`flex items-center gap-2 text-xs py-1 px-2 rounded-md ${
-                    index % 2 === 0
-                      ? 'bg-[#010066]/5 text-[#010066]'
-                      : 'bg-[#bd0811]/5 text-[#bd0811]'
-                  }`}
-                >
-                  {getApplicationIcon(app)}
-                  <span>{app}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
 
-        <a
-          href="#contato"
-          className="group/btn flex items-center justify-between w-full bg-gradient-to-r from-[#010066] to-[#010066]/90 hover:from-[#bd0811] hover:to-[#bd0811]/90 text-white py-2.5 px-4 rounded-lg transition-all duration-300"
-        >
-          <span className="font-medium">Solicitar informações</span>
-          <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1" />
-        </a>
+        <div className="mt-auto">
+          <h4 className="text-sm font-semibold text-[#010066] mb-2">
+            Aplicações:
+          </h4>
+          <ul className="space-y-1.5 h-24 overflow-y-auto">
+            {applicationsList.map((app, index) => (
+              <li
+                key={index}
+                className={`flex items-center gap-2 text-xs py-1 px-2 rounded-md ${
+                  index % 2 === 0
+                    ? 'bg-[#010066]/5 text-[#010066]'
+                    : 'bg-[#bd0811]/5 text-[#bd0811]'
+                }`}
+              >
+                {getApplicationIcon(app)}
+                <span>{app}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
