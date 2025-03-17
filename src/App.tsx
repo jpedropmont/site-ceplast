@@ -1,3 +1,7 @@
+'use client';
+
+import type React from 'react';
+import { useEffect, useRef } from 'react';
 import {
   Phone,
   Mail,
@@ -10,55 +14,149 @@ import {
 } from 'lucide-react';
 import ProductCard from './components/ProductCard';
 import ContactCard from './components/ContactCard';
-import './index.css';
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  applications: string;
+  image: string;
+}
+
+interface Contact {
+  id: number;
+  name: string;
+  position: string;
+  phone: string;
+  image: string;
+}
+
+interface ProcessStep {
+  id: number;
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  color: string;
+}
 
 function App() {
-  const products = [
+  // Ref for the animation container
+  const animationRef = useRef<HTMLDivElement>(null);
+
+  // Animation effect for the showcase section
+  useEffect(() => {
+    const animateElements = () => {
+      if (!animationRef.current) return;
+
+      const elements =
+        animationRef.current.querySelectorAll('.animate-element');
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          (el as HTMLElement).style.opacity = '1';
+          (el as HTMLElement).style.transform = 'translateX(0)';
+        }, index * 200);
+      });
+    };
+
+    animateElements();
+
+    // Re-trigger animation on scroll into view
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          animateElements();
+        }
+      },
+      { threshold: 0.1 },
+    );
+
+    if (animationRef.current) {
+      observer.observe(animationRef.current);
+    }
+
+    return () => {
+      if (animationRef.current) {
+        observer.unobserve(animationRef.current);
+      }
+    };
+  }, []);
+
+  const products: Product[] = [
     {
       id: 1,
       name: 'Nylon Poli',
-      description: 'Ideal para queijos e produtos lácteos',
-      image: '/placeholder.svg?height=300&width=400',
+      description:
+        'Material de alta resistência mecânica, ideal para embalagens que exigem durabilidade e proteção contra rasgos. Possui excelente barreira contra gases e umidade.',
+      applications: 'Produtos alimentícios, frigoríficos, laticínios',
+      image: '/assets/nylonpoli.jpg',
     },
     {
       id: 2,
-      name: 'Termo Encolhível',
-      description: 'Perfeita para carnes e linguiças',
-      image: '/placeholder.svg?height=300&width=400',
+      name: 'Termoencolhível',
+      description:
+        'Encolhe com calor, selando o produto com segurança e transparência. Protege contra umidade, poeira e adulterações.',
+      applications: 'Frigoríficos, laticínios, lacres',
+      image: '/assets/termoencolhivel.jpg',
     },
     {
       id: 3,
-      name: 'PE',
-      description: 'Versátil para diversos alimentos',
-      image: '/placeholder.svg?height=300&width=400',
+      name: 'PE (Polietileno)',
+      description:
+        'Filme plástico versátil, com alta resistência e flexibilidade. Usado para proteção contra umidade e poeira.',
+      applications: 'Diversos segmentos industriais e alimentícios',
+      image: '/assets/file-peixe.jpg',
     },
     {
       id: 4,
-      name: 'PE + Pet',
-      description: 'Excelente para embalagens resistentes',
-      image: '/placeholder.svg?height=300&width=400',
+      name: 'PE + PET',
+      description:
+        'Combinação que une resistência mecânica e barreira aprimorada contra umidade e oxigênio. Ideal para produtos que precisam de conservação prolongada.',
+      applications: 'Embalagens de alto desempenho',
+      image: '/assets/bacon.jpg',
     },
     {
       id: 5,
-      name: 'PE Laminado',
-      description: 'Ideal para embalagens laminadas',
-      image: '/placeholder.svg?height=300&width=400',
+      name: 'Laminado',
+      description:
+        'Embalagem composta por múltiplas camadas (PET, PE, PP), garantindo proteção extra e maior durabilidade. Oferece excelente vedação.',
+      applications: 'Alimentos, higiene pessoal, farmacêuticos',
+      image: '/assets/laminado.jpg',
     },
     {
       id: 6,
       name: 'MRP',
-      description: 'Excelente para macaxeira e vegetais',
-      image: '/placeholder.svg?height=300&width=400',
+      description:
+        'Embalagem estruturada que protege contra impactos e contaminação externa. Utilizado em setores farmacêuticos, eletrônicos e cosméticos.',
+      applications: 'Produtos frágeis e sensíveis',
+      image: '/assets/amendoim.jpg',
     },
     {
       id: 7,
       name: 'Filme Stretch',
-      description: 'Perfeito para embalar produtos diversos',
-      image: '/placeholder.svg?height=300&width=400',
+      description:
+        'Filme plástico altamente elástico, utilizado para envolver e proteger cargas, garantindo estabilidade no transporte e armazenamento.',
+      applications: 'Transporte, armazenamento, paletização',
+      image: '/assets/stretch.jpg',
+    },
+    {
+      id: 8,
+      name: 'Bisnaga',
+      description:
+        'Embalagem flexível e prática para cremes, molhos e medicamentos. Permite fácil dosagem e evita desperdício.',
+      applications: 'Cosméticos, alimentos pastosos, produtos farmacêuticos',
+      image: '/assets/bisnaga.jpg',
+    },
+    {
+      id: 9,
+      name: 'Stand-up Pouch',
+      description:
+        'Embalagem com base reforçada, permitindo que fique em pé nas prateleiras. Pode ter fechamento ziplock, prolongando a vida útil do produto.',
+      applications: 'Condimentos, produtos fitness, produtos de limpeza',
+      image: '/assets/stand-up.jpg',
     },
   ];
 
-  const salesContacts = [
+  const salesContacts: Contact[] = [
     {
       id: 1,
       name: 'Davyd Brasil',
@@ -75,7 +173,7 @@ function App() {
     },
   ];
 
-  const processSteps = [
+  const processSteps: ProcessStep[] = [
     {
       id: 1,
       title: 'Criação da Arte',
@@ -177,26 +275,48 @@ function App() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section
-        id="inicio"
-        className="bg-gradient-to-r from-[#010066] to-[#01004d] py-20 text-white"
-      >
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Embalagens a Vácuo de Alta Qualidade
-            </h1>
-            <p className="text-lg mb-8">
-              Soluções de embalagens para conservar a qualidade e frescor dos
-              seus produtos por mais tempo.
-            </p>
-            <a
-              href="#produtos"
-              className="inline-block rounded-md bg-[#bd0811] px-6 py-3 text-white hover:bg-[#a00710] transition-colors"
-            >
-              Conheça Nossos Produtos
-            </a>
+      {/* Showcase Section with Simplified Animation */}
+      <section className="relative bg-gradient-to-r from-[#010066] to-[#01004d] py-16 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[url('/placeholder.svg?height=800&width=1600')] bg-cover bg-center"></div>
+        </div>
+        <div className="container mx-auto relative z-10">
+          <div className="flex flex-col items-center justify-center">
+            <div className="w-full max-w-full px-4">
+              <div ref={animationRef} className="overflow-hidden text-center">
+                <h1
+                  className="animate-element text-4xl md:text-5xl font-bold mb-4 text-white opacity-0 transformtransition-all duration-700"
+                  style={{ transitionDelay: '100ms' }}
+                >
+                  A Embalagem é a Vitrine do Seu Produto
+                </h1>
+                <p
+                  className="animate-element text-lg mb-8 text-white/90 opacity-0 transform transition-all duration-700"
+                  style={{ transitionDelay: '300ms' }}
+                >
+                  Mais que proteger, nossas embalagens valorizam, comunicam e
+                  vendem. Transforme seu produto em uma experiência visual e
+                  sensorial completa.
+                </p>
+                <div
+                  className="animate-element flex flex-wrap gap-4 mt-8 opacity-0 transform transition-all duration-700 justify-center"
+                  style={{ transitionDelay: '500ms' }}
+                >
+                  <a
+                    href="#produtos"
+                    className="inline-block rounded-md bg-[#bd0811] px-6 py-3 text-white hover:bg-[#a00710] transition-colors"
+                  >
+                    Conheça Nossas Soluções
+                  </a>
+                  <a
+                    href="#contato"
+                    className="inline-block rounded-md bg-white/10 border border-white/30 px-6 py-3 text-white hover:bg-white/20 transition-colors"
+                  >
+                    Solicite um Orçamento
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -210,7 +330,7 @@ function App() {
             </h2>
             <p className="text-gray-700 mb-8">
               A Ceplast é uma indústria especializada na produção de embalagens
-              a vácuo de alta qualidade para diversos tipos de alimentos, como
+              a vácuo de alta qualidade para diversos tipos de produtos, como
               queijos, carnes, linguiças, macaxeira e muito mais. Nossas
               embalagens garantem maior durabilidade e preservação das
               características originais dos produtos.
@@ -234,7 +354,7 @@ function App() {
               </div>
               <div className="flex flex-col items-center max-w-xs">
                 <div className="w-16 h-16 rounded-full bg-[#010066] flex items-center justify-center mb-4">
-                  <span className="text-white text-2xl">7+</span>
+                  <span className="text-white text-2xl">9+</span>
                 </div>
                 <h3 className="text-xl font-semibold text-[#010066]">
                   Tipos de Embalagens
@@ -245,61 +365,19 @@ function App() {
         </div>
       </section>
 
-      {/* Director's Message Section */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center gap-8">
-              <div className="md:w-1/3">
-                <div className="relative w-64 h-64 mx-auto overflow-hidden rounded-full border-4 border-[#010066]">
-                  <img
-                    src="/assets/monteiro.png"
-                    alt="Diretor da Ceplast"
-                    className="w-full h-full object-cover"
-                    style={{ transform: 'scale(1.2)' }}
-                  />
-                </div>
-              </div>
-              <div className="md:w-2/3">
-                <h2 className="text-3xl font-bold text-[#010066] mb-4">
-                  Mensagem do Diretor
-                </h2>
-                <div className="text-gray-700 space-y-4">
-                  <p className="italic text-lg">
-                    "Na Ceplast, nossa missão é fornecer soluções de embalagem
-                    que não apenas protejam seus produtos, mas também agreguem
-                    valor à sua marca. Há mais de uma década, temos investido
-                    constantemente em tecnologia e inovação para oferecer o que
-                    há de melhor em embalagens a vácuo."
-                  </p>
-                  <p>
-                    Nosso compromisso com a qualidade e a satisfação do cliente
-                    nos tornou referência no mercado. Trabalhamos diariamente
-                    para superar expectativas e construir relacionamentos
-                    duradouros com nossos parceiros comerciais.
-                  </p>
-                  <p>
-                    Convidamos você a conhecer nossas soluções e descobrir como
-                    podemos contribuir para o sucesso do seu negócio.
-                  </p>
-                  <div className="pt-4">
-                    <p className="font-bold text-[#010066]">Luizmar Monteiro</p>
-                    <p className="text-sm">Diretor Executivo | Ceplast</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Products Section */}
-      <section id="produtos" className="py-16 bg-white">
+      <section id="produtos" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-[#010066] mb-12">
+          <h2 className="text-3xl font-bold text-center text-[#010066] mb-4">
             Nossos Produtos
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12">
+            Oferecemos uma ampla variedade de soluções de embalagens para
+            atender às necessidades específicas do seu produto. Além dos
+            produtos exibidos, também disponibilizamos outros tipos de
+            embalagens personalizadas conforme sua necessidade.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
@@ -307,79 +385,8 @@ function App() {
         </div>
       </section>
 
-      {/* Client Products Section */}
-      <section id="aplicacoes" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center text-[#010066] mb-12">
-            Produtos Embalados com Nossa Tecnologia
-          </h2>
-          <p className="text-center text-gray-700 max-w-3xl mx-auto mb-10">
-            Nossas embalagens a vácuo são ideais para diversos tipos de
-            alimentos, garantindo maior durabilidade, preservação do sabor e
-            qualidade por mais tempo.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                name: 'Queijo Coalho',
-                image: '/assets/queijo-coalho.jpeg',
-              },
-              {
-                name: 'Queijo Mussarela',
-                image: '/assets/queijo-mussarela.jpg',
-              },
-              {
-                name: 'Macaxeira',
-                image: '/assets/macaxeira.jpg',
-              },
-              {
-                name: 'Linguiça',
-                image: '/assets/linguica.jpeg',
-              },
-              {
-                name: 'Carnes',
-                image: '/assets/picanha.jpeg',
-              },
-              {
-                name: 'Outros Itens',
-                image: null,
-              },
-            ].map((item, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div className="bg-gray-50 rounded-full p-2 mb-3 w-28 h-28 flex items-center justify-center">
-                  {item.image ? (
-                    <img
-                      src={item.image || '/placeholder.svg'}
-                      alt={item.name}
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  ) : (
-                    <Package className="w-20 h-20 text-gray-400" />
-                  )}
-                </div>
-                <h3 className="text-center font-medium text-[#010066]">
-                  {item.name}
-                </h3>
-              </div>
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <p className="text-gray-700 mb-6">
-              Nossos clientes confiam na qualidade das nossas embalagens para
-              manter seus produtos frescos e protegidos.
-            </p>
-            <a
-              href="#contato"
-              className="inline-block rounded-md bg-[#bd0811] px-6 py-3 text-white hover:bg-[#a00710] transition-colors"
-            >
-              Solicite um Orçamento
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Process Section */}
-      <section id="processo" className="py-16 bg-white">
+      <section id="processo" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-[#010066] mb-6">
             Nosso Processo
@@ -394,7 +401,7 @@ function App() {
               {processSteps.map((step) => (
                 <div
                   key={step.id}
-                  className="bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
+                  className="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-start gap-4">
                     <div
@@ -413,7 +420,7 @@ function App() {
               ))}
             </div>
 
-            <div className="mt-12 bg-gray-50 rounded-lg p-6">
+            <div className="mt-12 bg-white rounded-lg p-6 shadow-sm">
               <h3 className="text-xl font-semibold text-[#010066] mb-4">
                 Acompanhamento Contínuo
               </h3>
@@ -448,21 +455,12 @@ function App() {
                 </div>
               </div>
             </div>
-
-            <div className="mt-8 text-center">
-              <a
-                href="#contato"
-                className="inline-block rounded-md bg-[#bd0811] px-6 py-3 text-white hover:bg-[#a00710] transition-colors"
-              >
-                Inicie Seu Projeto
-              </a>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contato" className="py-16 bg-gray-50">
+      <section id="contato" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-[#010066] mb-12">
             Fale com Nossos Vendedores
@@ -477,12 +475,8 @@ function App() {
             <h3 className="text-2xl font-bold text-[#010066] mb-6 text-center">
               Informações de Contato
             </h3>
-            <div className="bg-white p-6 rounded-lg shadow-sm">
+            <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-100">
               <div className="flex flex-col space-y-4">
-                <div className="flex items-center">
-                  <Phone className="h-5 w-5 text-[#bd0811] mr-3" />
-                  <span>(85) 98733-8532</span>
-                </div>
                 <div className="flex items-center">
                   <Mail className="h-5 w-5 text-[#bd0811] mr-3" />
                   <span>ceplastembalagens@gmail.com</span>
@@ -503,11 +497,11 @@ function App() {
       {/* Footer */}
       <footer className="bg-[#010066] text-white py-8">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-center items-center">
             <div className="text-center md:text-right">
               <p>
-                &copy; {new Date().getFullYear()} Ceplast Embalagens a Vácuo.
-                Todos os direitos reservados.
+                &copy; {new Date().getFullYear()} CEPLAST INDUSTRIA E COMERCIO
+                DE EMBALAGENS A VACUO LTDA. Todos os direitos reservados.
               </p>
             </div>
           </div>
