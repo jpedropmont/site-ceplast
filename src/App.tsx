@@ -3,7 +3,6 @@
 import type React from 'react';
 import { useEffect, useRef } from 'react';
 import {
-  Phone,
   Mail,
   MapPin,
   Package,
