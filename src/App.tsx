@@ -601,8 +601,8 @@ function App() {
                 <div className="flex items-center">
                   <MapPin className="h-5 w-5 text-[#bd0811] mr-3" />
                   <span>
-                    Rua Deputado Sebastião Brasilino de Freitas, 1900 - Parque
-                    Iracema - Fortaleza - CE
+                    Av. Desembargador Gonzaga, 1900 - Cidade dos Funcionários,
+                    Fortaleza - CE
                   </span>
                 </div>
               </div>
