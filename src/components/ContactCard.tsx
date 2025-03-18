@@ -6,6 +6,7 @@ interface Contact {
   name: string;
   position: string;
   phone: string;
+  email: string;
   image: string;
 }
 
@@ -66,6 +67,10 @@ const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
                 .replace(/\+55/, '')
                 .replace(/(\d{2})(\d{1})(\d{4})(\d{4})/, '($1) $2 $3-$4')}
             </div>
+          </div>
+          <div className="flex items-center justify-between mt-2">
+            <div className="text-sm text-gray-500">Email</div>
+            <div className="text-[#010066] font-medium">{contact.email}</div>
           </div>
         </div>
       </div>

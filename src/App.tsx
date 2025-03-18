@@ -25,6 +25,7 @@ interface Contact {
   name: string;
   position: string;
   phone: string;
+  email: string; // Add email property
   image: string;
 }
 
@@ -120,8 +121,9 @@ function App() {
       id: 6,
       name: 'MRP',
       description:
-        'Embalagem estruturada que protege contra impactos e contaminação externa. Utilizado em setores farmacêuticos, eletrônicos e cosméticos.',
-      applications: 'Produtos frágeis e sensíveis',
+        'Uma alternativa do Nylon Poli, O MRP é uma embalagem estruturada que protege contra impactos, contaminação externa e extremas temperaturas.',
+      applications:
+        'Produtos frágeis e sensíveis, Diversos segmentos industriais e alimentícios',
       image: '/assets/amendoim.jpg',
     },
     {
@@ -145,7 +147,7 @@ function App() {
       name: 'Stand-up Pouch',
       description:
         'Embalagem com base reforçada, permitindo que fique em pé nas prateleiras. Pode ter fechamento ziplock, prolongando a vida útil do produto.',
-      applications: 'Condimentos, produtos fitness, produtos de limpeza',
+      applications: 'Produtos alimentícios, Condimentos, Oleaginosas',
       image: '/assets/stand-up.jpg',
     },
   ];
@@ -156,6 +158,7 @@ function App() {
       name: 'Davyd Brasil',
       position: 'Representante de Vendas',
       phone: '+5585997870923',
+      email: 'davyd.ceplast@gmail.com',
       image: '/assets/davyd.jpg',
     },
     {
@@ -163,6 +166,7 @@ function App() {
       name: 'João Pedro Monteiro',
       position: 'Representante de Vendas',
       phone: '+5585997599275',
+      email: 'joaopedro.ceplast@gmail.com',
       image: '/assets/joaopedro.jpg',
     },
   ];
@@ -172,7 +176,7 @@ function App() {
       id: 1,
       title: 'Criação da Arte',
       description:
-        'Nossa equipe de design trabalha com você para criar a arte perfeita para sua embalagem.',
+        'Nossa equipe de design trabalha com você para criar a arte perfeita para sua embalagem, sem custo para o cliente.',
       icon: <Palette className="h-10 w-10 text-white" />,
       color: 'bg-[#010066]',
     },
@@ -180,7 +184,7 @@ function App() {
       id: 2,
       title: 'Aprovação',
       description:
-        'Você recebe provas digitais e físicas para aprovação antes da produção em larga escala.',
+        'Você recebe provas digitais para aprovação antes da produção em larga escala.',
       icon: <CheckCircle className="h-10 w-10 text-white" />,
       color: 'bg-[#bd0811]',
     },
@@ -196,7 +200,7 @@ function App() {
       id: 4,
       title: 'Entrega',
       description:
-        'Entregamos seu pedido no prazo combinado, com acompanhamento logístico em tempo real.',
+        'Entregamos seu pedido no prazo combinado, com acompanhamento logístico. Consulte condições para obter frete grátis.',
       icon: <Truck className="h-10 w-10 text-white" />,
       color: 'bg-[#bd0811]',
     },
@@ -328,9 +332,10 @@ function App() {
             <p className="text-gray-700 mb-8">
               A Ceplast é uma indústria especializada na produção de embalagens
               a vácuo de alta qualidade para diversos tipos de produtos, como
-              queijos, carnes, linguiças, macaxeira e muito mais. Nossas
-              embalagens garantem maior durabilidade e preservação das
-              características originais dos produtos.
+              queijos, carnes, linguiças, salsichas, macaxeiras, pescados,
+              embutidos, fatiados, frangos e muito mais. Nossas embalagens
+              garantem maior durabilidade e preservação das características
+              originais dos produtos.
             </p>
             <div className="flex flex-wrap justify-center gap-8 mt-10">
               <div className="flex flex-col items-center max-w-xs">
@@ -543,10 +548,12 @@ function App() {
                 <div className="md:w-3/4">
                   <p className="text-gray-700">
                     Durante todo o processo, desde o primeiro contato até a
-                    entrega final, nossa equipe mantém comunicação constante
-                    para garantir que sua experiência seja a melhor possível.
-                    Oferecemos suporte técnico especializado e acompanhamento
-                    personalizado para cada cliente.
+                    entrega final, mantemos uma comunicação constante para
+                    garantir a melhor experiência possível. Oferecemos suporte
+                    técnico especializado e um acompanhamento personalizado para
+                    cada cliente. Com nossa equipe baseada no Nordeste,
+                    priorizamos o atendimento presencial sempre que viável,
+                    proporcionando um serviço ainda mais próximo e eficiente.
                   </p>
                   <div className="mt-4 flex flex-col sm:flex-row gap-4">
                     <div className="flex items-center gap-2">
@@ -573,7 +580,7 @@ function App() {
       <section id="contato" className="py-16 bg-white">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center text-[#010066] mb-12">
-            Fale com Nossos Vendedores
+            Fale com Nossa Equipe
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {salesContacts.map((contact) => (

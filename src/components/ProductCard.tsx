@@ -15,6 +15,7 @@ import {
   Milk,
   Beef,
   ShowerHead,
+  Nut,
 } from 'lucide-react';
 
 interface Product {
@@ -63,6 +64,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       return <Warehouse className="w-4 h-4" />;
     if (application.toLowerCase().includes('paletização'))
       return <Package className="w-4 h-4" />;
+    if (application.toLowerCase().includes('oleaginosas'))
+      return <Nut className="w-4 h-4" />;
     return <Package className="w-4 h-4" />;
   };
 
