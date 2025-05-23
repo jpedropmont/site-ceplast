@@ -15,9 +15,19 @@ interface ContactCardProps {
 }
 
 const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
-  // Format phone number for tel: link
   const formatPhoneForCall = (phone: string) => {
     return phone.replace(/\+/, '');
+  };
+
+  const handleConversion = (url: string) => {
+    if (
+      typeof window !== 'undefined' &&
+      typeof window.gtag_report_conversion === 'function'
+    ) {
+      window.gtag_report_conversion(url);
+    } else {
+      window.location.href = url;
+    }
   };
 
   return (
@@ -39,6 +49,10 @@ const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3">
           <a
             href={`tel:${formatPhoneForCall(contact.phone)}`}
+            onClick={(e) => {
+              e.preventDefault();
+              handleConversion(`tel:${formatPhoneForCall(contact.phone)}`);
+            }}
             className="flex items-center justify-center gap-2 bg-[#010066] text-white px-4 py-3 rounded-md hover:bg-[#00004d] transition-colors group"
           >
             <Phone className="h-5 w-5 group-hover:animate-pulse" />
@@ -52,6 +66,10 @@ const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
             )},%20gostaria%20de%20saber%20mais%20sobre%20as%20embalagens%20que%20a%20Ceplast%20fornece.`}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => {
+              e.preventDefault();
+              handleConversion(`https://wa.me/${contact.phone}`);
+            }}
             className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-md hover:bg-[#128C7E] transition-colors group"
           >
             <MessageCircle className="h-5 w-5 group-hover:animate-pulse" />
@@ -77,5 +95,11 @@ const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
     </div>
   );
 };
+
+declare global {
+  interface Window {
+    gtag_report_conversion?: (url: string) => void;
+  }
+}
 
 export default ContactCard;
