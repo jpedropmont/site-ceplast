@@ -601,7 +601,7 @@ function App() {
                 <div className="flex items-center">
                   <MapPin className="h-5 w-5 text-[#bd0811] mr-3" />
                   <span>
-                    Av. Desembargador Gonzaga, 1900 - Cidade dos Funcionários,
+                    Av. Desembargador Gonzaga, 533 - Cidade dos Funcionários,
                     Fortaleza - CE
                   </span>
                 </div>
