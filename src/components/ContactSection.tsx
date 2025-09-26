@@ -105,11 +105,7 @@ const ContactSection = () => {
                 {/* Botões de Ação */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-4">
                   <a
-                    href={generateWhatsAppURL(
-                      contact.phone,
-                      contact.name,
-                      'quote',
-                    )}
+                    href={generateWhatsAppURL('quote')}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-lg hover:bg-[#128C7E] transition-colors font-semibold"
@@ -200,11 +196,7 @@ const ContactSection = () => {
             {/* CTA */}
             <div className="text-center mt-8 pt-8 border-t border-gray-100">
               <a
-                href={generateWhatsAppURL(
-                  '+5585997870923',
-                  'Davyd Brasil',
-                  'quote',
-                )}
+                href={generateWhatsAppURL('quote')}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center bg-[#bd0811] text-white px-8 py-4 font-bold text-lg rounded-lg hover:bg-[#010066] transition-colors hover:shadow-xl transform hover:scale-105"
