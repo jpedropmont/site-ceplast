@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { generateWhatsAppURL } from '@/utils/whatsapp';
 
 function CatalogSection() {
@@ -66,10 +67,11 @@ function CatalogSection() {
                     }`}
                     onClick={() => toggleImageExpansion(item.image)}
                   >
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover transition-transform duration-300"
+                      fill
+                      className="object-cover transition-transform duration-300"
                     />
                     {/* Texto "Imagem meramente ilustrativa" */}
                     <div className="absolute bottom-0.5 left-0.5 bg-black/70 text-white text-[10px] px-1 py-0.5 rounded-sm">
@@ -146,10 +148,11 @@ function CatalogSection() {
                     }`}
                     onClick={() => toggleImageExpansion(item.image)}
                   >
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover transition-transform duration-300"
+                      fill
+                      className="object-cover transition-transform duration-300"
                     />
                     {/* Texto "Imagem meramente ilustrativa" */}
                     <div className="absolute bottom-0.5 left-0.5 bg-black/70 text-white text-[10px] px-1 py-0.5 rounded-sm">
@@ -226,10 +229,11 @@ function CatalogSection() {
                     }`}
                     onClick={() => toggleImageExpansion(item.image)}
                   >
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.name}
-                      className="w-full h-full object-cover transition-transform duration-300"
+                      fill
+                      className="object-cover transition-transform duration-300"
                     />
                     {/* Texto "Imagem meramente ilustrativa" */}
                     <div className="absolute bottom-0.5 left-0.5 bg-black/70 text-white text-[10px] px-1 py-0.5 rounded-sm">

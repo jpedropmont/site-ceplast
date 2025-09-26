@@ -6,7 +6,6 @@ import Footer from '../../../components/Footer';
 import Image from 'next/image';
 import { ArrowRight, Shield, Thermometer, Beef } from 'lucide-react';
 import { generateWhatsAppURL } from '@/utils/whatsapp';
-import { image } from 'framer-motion/client';
 
 export default function FrigorificosPage() {
   const products = [

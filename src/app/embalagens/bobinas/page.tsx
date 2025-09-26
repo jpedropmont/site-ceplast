@@ -5,7 +5,6 @@ import { ArrowRight, Package, Shield, Clock, Zap } from 'lucide-react';
 import SegmentLayout from '../../../components/SegmentLayout';
 import { segmentsData } from '../../../content/segmentos';
 import { generateWhatsAppURL } from '@/utils/whatsapp';
-import Image from 'next/image';
 
 export default function BobinasPage() {
   const segment = segmentsData.find((s) => s.id === 'bobinas');

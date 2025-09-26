@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Mail, MapPin, MessageCircle } from 'lucide-react';
-import { generateWhatsAppURL } from '@/utils/whatsapp';
+import { Mail, MapPin } from 'lucide-react';
 import { companyInfo } from '@/utils/salesContacts';
 
 const CompanyInfoSection = () => {
