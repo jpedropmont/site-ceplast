@@ -57,9 +57,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
             rel="noopener noreferrer"
             onClick={(e) => {
               e.preventDefault();
-              handleConversion(
-                generateWhatsAppURL('general'),
-              );
+              handleConversion(generateWhatsAppURL('general'));
             }}
             className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-md hover:bg-[#128C7E] transition-colors group"
           >
