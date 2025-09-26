@@ -52,13 +52,13 @@ const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
             <span className="font-medium">Ligar Agora</span>
           </a>
           <a
-            href={generateWhatsAppURL(contact.phone, contact.name, 'general')}
+            href={generateWhatsAppURL('general')}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => {
               e.preventDefault();
               handleConversion(
-                generateWhatsAppURL(contact.phone, contact.name, 'general'),
+                generateWhatsAppURL('general'),
               );
             }}
             className="flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-3 rounded-md hover:bg-[#128C7E] transition-colors group"
