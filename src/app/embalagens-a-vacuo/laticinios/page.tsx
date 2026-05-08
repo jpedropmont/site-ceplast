@@ -5,7 +5,7 @@ import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Image from 'next/image';
 import { ArrowRight, Shield, Clock, Star } from 'lucide-react';
-import { generateWhatsAppURL } from '@/utils/whatsapp';
+import { WhatsAppTrackedLink } from '@/components/WhatsAppTrackedLink';
 
 export default function LaticiniosPage() {
   const products = [
@@ -62,15 +62,17 @@ export default function LaticiniosPage() {
                 nutricionais com tecnologia avançada.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href={generateWhatsAppURL('quote', 'laticinios')}
+                <WhatsAppTrackedLink
+                  analyticsLocation="page_laticinios_hero_whatsapp"
+                  waContext="quote"
+                  segmentId="laticinios"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center bg-[#25D366] text-white px-8 py-4 font-bold rounded-lg hover:bg-[#128C7E] transition-all duration-300"
                 >
                   Solicitar Orçamento
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                </WhatsAppTrackedLink>
               </div>
             </div>
             <div className="animate-fade-in-right">
@@ -146,15 +148,17 @@ export default function LaticiniosPage() {
             Nossas embalagens garantem que seus laticínios cheguem ao consumidor
             com toda qualidade e frescor.
           </p>
-          <a
-            href={generateWhatsAppURL('quote', 'laticinios')}
+          <WhatsAppTrackedLink
+            analyticsLocation="page_laticinios_footer_whatsapp"
+            waContext="quote"
+            segmentId="laticinios"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center bg-[#25D366] text-white px-10 py-5 font-bold text-lg rounded-lg hover:bg-[#128C7E] transition-all duration-300 animate-fade-in-up animate-delay-400"
           >
             Falar com Especialista
             <ArrowRight className="ml-3 h-6 w-6" />
-          </a>
+          </WhatsAppTrackedLink>
         </div>
       </section>
 

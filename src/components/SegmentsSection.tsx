@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { generateWhatsAppURL } from '@/utils/whatsapp';
+import { WhatsAppTrackedLink } from '@/components/WhatsAppTrackedLink';
 import Image from 'next/image';
 
 const SegmentsSection = () => {
@@ -102,15 +102,17 @@ const SegmentsSection = () => {
                     Saber Mais
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
-                  <a
-                    href={generateWhatsAppURL('quote', segment.slug)}
+                  <WhatsAppTrackedLink
+                    analyticsLocation={`home_segments_detail_${segment.slug}_whatsapp`}
+                    waContext="quote"
+                    segmentId={segment.slug}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center px-8 py-4 font-semibold border-2 border-[#010066] text-[#010066] rounded-lg hover:bg-[#010066] hover:text-white transition-all duration-300"
                   >
                     Solicitar Orçamento
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
+                  </WhatsAppTrackedLink>
                 </div>
               </div>
             </div>
@@ -127,15 +129,16 @@ const SegmentsSection = () => {
             Entre em contato e vamos desenvolver a embalagem ideal para seu
             produto.
           </p>
-          <a
-            href={generateWhatsAppURL('general')}
+          <WhatsAppTrackedLink
+            analyticsLocation="home_segments_footer_whatsapp_general"
+            waContext="general"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center bg-[#bd0811] text-white px-10 py-5 font-bold text-lg rounded-lg hover:bg-[#010066] transition-colors duration-300 hover:shadow-xl transform hover:scale-105"
           >
             Falar com Especialista
             <ArrowRight className="ml-3 h-6 w-6" />
-          </a>
+          </WhatsAppTrackedLink>
         </div>
       </div>
     </section>

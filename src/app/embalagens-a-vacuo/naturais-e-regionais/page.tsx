@@ -5,7 +5,7 @@ import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Image from 'next/image';
 import { ArrowRight, Shield, Leaf, Package } from 'lucide-react';
-import { generateWhatsAppURL } from '@/utils/whatsapp';
+import { WhatsAppTrackedLink } from '@/components/WhatsAppTrackedLink';
 
 export default function NaturaisRegionaisPage() {
   const products = [
@@ -75,15 +75,17 @@ export default function NaturaisRegionaisPage() {
                 qualidade dos alimentos naturais.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href={generateWhatsAppURL('quote', 'naturais-e-regionais')}
+                <WhatsAppTrackedLink
+                  analyticsLocation="page_naturais_regionais_hero_whatsapp"
+                  waContext="quote"
+                  segmentId="naturais-e-regionais"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center bg-[#25D366] text-white px-8 py-4 font-bold rounded-lg hover:bg-[#128C7E] transition-all duration-300"
                 >
                   Solicitar Orçamento
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                </WhatsAppTrackedLink>
               </div>
             </div>
             <div className="animate-fade-in-right">
@@ -180,15 +182,17 @@ export default function NaturaisRegionaisPage() {
             Preserve a autenticidade e qualidade dos seus produtos regionais com
             nossas embalagens especializadas.
           </p>
-          <a
-            href={generateWhatsAppURL('quote', 'naturais-e-regionais')}
+          <WhatsAppTrackedLink
+            analyticsLocation="page_naturais_regionais_footer_whatsapp"
+            waContext="quote"
+            segmentId="naturais-e-regionais"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center bg-[#25D366] text-white px-10 py-5 font-bold text-lg rounded-lg hover:bg-[#128C7E] transition-all duration-300 animate-fade-in-up animate-delay-400"
           >
             Falar com Especialista
             <ArrowRight className="ml-3 h-6 w-6" />
-          </a>
+          </WhatsAppTrackedLink>
         </div>
       </section>
 

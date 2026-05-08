@@ -4,7 +4,7 @@ import React from 'react';
 import { ArrowRight, Package, Shield, Clock, Zap } from 'lucide-react';
 import SegmentLayout from '../../../components/SegmentLayout';
 import { segmentsData } from '../../../content/segmentos';
-import { generateWhatsAppURL } from '@/utils/whatsapp';
+import { WhatsAppTrackedLink } from '@/components/WhatsAppTrackedLink';
 
 export default function BobinasPage() {
   const segment = segmentsData.find((s) => s.id === 'bobinas');
@@ -61,15 +61,17 @@ export default function BobinasPage() {
                   para sua produção industrial.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href={generateWhatsAppURL('quote', 'bobinas')}
+                  <WhatsAppTrackedLink
+                    analyticsLocation="page_bobinas_hero_whatsapp"
+                    waContext="quote"
+                    segmentId="bobinas"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center bg-white text-[#010066] px-8 py-4 font-bold rounded-lg hover:bg-gray-100 transition-all duration-300"
                   >
                     Solicitar Orçamento
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </a>
+                  </WhatsAppTrackedLink>
                 </div>
               </div>
               <div className="animate-fade-in-right">
@@ -166,15 +168,17 @@ export default function BobinasPage() {
             Entre em contato conosco e descubra como nossas bobinas industriais
             podem otimizar sua linha de produção.
           </p>
-          <a
-            href={generateWhatsAppURL('quote', 'bobinas')}
+          <WhatsAppTrackedLink
+            analyticsLocation="page_bobinas_footer_whatsapp"
+            waContext="quote"
+            segmentId="bobinas"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center bg-[#bd0811] text-white px-10 py-5 font-bold text-lg rounded-lg hover:bg-white hover:text-[#010066] transition-all duration-300 animate-fade-in-up animate-delay-400"
           >
             Falar com Especialista Industrial
             <ArrowRight className="ml-3 h-6 w-6" />
-          </a>
+          </WhatsAppTrackedLink>
         </div>
       </section>
     </SegmentLayout>

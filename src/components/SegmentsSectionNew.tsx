@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-import { generateWhatsAppURL } from '@/utils/whatsapp';
+import { WhatsAppTrackedLink } from '@/components/WhatsAppTrackedLink';
 import Image from 'next/image';
 
 const SegmentsSection = () => {
@@ -81,12 +81,11 @@ const SegmentsSection = () => {
                 </div>
 
                 {/* Botão */}
-                <a
-                  href={generateWhatsAppURL(
-                    'quote',
-                    segment.slug,
-                    segment.title,
-                  )}
+                <WhatsAppTrackedLink
+                  analyticsLocation={`segmentos_grid_${segment.slug}_whatsapp`}
+                  waContext="quote"
+                  segmentId={segment.slug}
+                  segmentName={segment.title}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 font-semibold rounded-lg text-white bg-[#25D366] hover:bg-[#128C7E] transition-all duration-300"
@@ -100,7 +99,7 @@ const SegmentsSection = () => {
                   </svg>
                   Solicitar Orçamento
                   <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
+                </WhatsAppTrackedLink>
               </div>
             </div>
           ))}
@@ -116,8 +115,9 @@ const SegmentsSection = () => {
             Entre em contato e vamos desenvolver a embalagem ideal para seu
             produto.
           </p>
-          <a
-            href={generateWhatsAppURL('quote')}
+          <WhatsAppTrackedLink
+            analyticsLocation="segmentos_footer_whatsapp_quote"
+            waContext="quote"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 font-bold rounded-lg hover:bg-[#128C7E] transition-all duration-300"
@@ -127,7 +127,7 @@ const SegmentsSection = () => {
             </svg>
             Falar com Especialista
             <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
+          </WhatsAppTrackedLink>
         </div>
       </div>
     </section>

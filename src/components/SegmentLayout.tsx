@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { Segment } from '@/content/segmentos';
-import { generateWhatsAppURL } from '@/utils/whatsapp';
+import { WhatsAppTrackedLink } from '@/components/WhatsAppTrackedLink';
 
 interface SegmentLayoutProps {
   segment: Segment;
@@ -242,14 +242,17 @@ const SegmentLayout: React.FC<SegmentLayoutProps> = ({ segment, children }) => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href={generateWhatsAppURL('segment', segment.id, segment.title)}
+              <WhatsAppTrackedLink
+                analyticsLocation={`segment_page_${segment.id}_layout_cta_whatsapp`}
+                waContext="segment"
+                segmentId={segment.id}
+                segmentName={segment.title}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center bg-[#bd0811] text-white px-8 py-4 rounded-lg font-semibold hover:bg-[#a00710] transition-colors"
               >
                 Solicitar Orçamento
-              </a>
+              </WhatsAppTrackedLink>
               <Link
                 href="/"
                 onClick={scrollToTop}

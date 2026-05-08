@@ -8,46 +8,18 @@ export const generateWhatsAppMessage = (
   context: 'general' | 'segment' | 'quote' = 'general',
   segmentName?: string,
 ): string => {
-  const baseMessage = `Olá ${contactName}, tudo bem?
-
-Estou visitando o site da Ceplast e gostaria de conhecer mais sobre as soluções em embalagens especializadas.`;
+  void contactName;
+  const baseMessage = `Olá! Vim pelo site da Ceplast.`;
 
   const contextMessages = {
     general: `
-
-Tenho interesse em:
-• Embalagens a vácuo para maior conservação
-• Embalagens tradicionais para produtos específicos
-• Soluções personalizadas para meu segmento
-
-Poderia me enviar mais informações sobre produtos, preços e condições de fornecimento?
-
-Aguardo seu contato!`,
+Quero tirar dúvidas e pedir um orçamento. Pode me ajudar?`,
 
     segment: `
-
-Tenho interesse em embalagens para ${segmentName || 'produtos alimentícios'}.
-
-Gostaria de receber:
-• Informações técnicas
-• Preços e condições
-• Prazo de entrega
-
-Obrigado!`,
+Quero orçamento para embalagens de ${segmentName || 'produtos alimentícios'}.`,
 
     quote: `
-
-Gostaria de solicitar um orçamento personalizado para minha empresa.
-
-Informações que posso fornecer:
-• Tipo de produto a embalar
-• Volume mensal estimado
-• Especificações desejadas
-• Prazo de entrega
-
-Quando seria possível agendar uma conversa para detalhar melhor minha necessidade?
-
-Agradeço a atenção!`,
+Quero solicitar um orçamento. Como podemos seguir?`,
   };
 
   return baseMessage + contextMessages[context];

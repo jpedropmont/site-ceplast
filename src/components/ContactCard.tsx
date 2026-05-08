@@ -1,7 +1,10 @@
+'use client';
+
 import type React from 'react';
 import { Phone, MessageCircle, User, Briefcase } from 'lucide-react';
 import { Contact } from '../types';
 import { generateWhatsAppURL } from '../utils/whatsapp';
+import { WhatsAppTrackedLink } from './WhatsAppTrackedLink';
 
 interface ContactCardProps {
   contact: Contact;
@@ -51,8 +54,9 @@ const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
             <Phone className="h-5 w-5 group-hover:animate-pulse" />
             <span className="font-medium">Ligar Agora</span>
           </a>
-          <a
-            href={generateWhatsAppURL('general')}
+          <WhatsAppTrackedLink
+            analyticsLocation="contact_card_whatsapp"
+            waContext="general"
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => {
@@ -63,7 +67,7 @@ const ContactCard: React.FC<ContactCardProps> = ({ contact }) => {
           >
             <MessageCircle className="h-5 w-5 group-hover:animate-pulse" />
             <span className="font-medium">WhatsApp</span>
-          </a>
+          </WhatsAppTrackedLink>
         </div>
 
         <div className="mt-4 pt-4 border-t border-gray-100">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { generateWhatsAppURL } from '@/utils/whatsapp';
+import { WhatsAppTrackedLink } from '@/components/WhatsAppTrackedLink';
 
 function ProductsSection() {
   return (
@@ -135,15 +135,16 @@ function ProductsSection() {
           <p className="text-gray-600 mb-6 text-lg">
             Precisa de uma solução específica? Fale conosco!
           </p>
-          <a
-            href={generateWhatsAppURL('general')}
+          <WhatsAppTrackedLink
+            analyticsLocation="products_section_cta_whatsapp"
+            waContext="general"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center bg-[#25D366] text-white px-8 py-4 font-bold text-lg rounded-lg hover:bg-[#128C7E] transition-colors hover:shadow-xl transform hover:scale-105"
           >
             <span className="mr-3">→</span>
             Solicitar Catálogo Completo
-          </a>
+          </WhatsAppTrackedLink>
         </div>
       </div>
     </section>

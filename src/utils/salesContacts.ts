@@ -21,52 +21,12 @@ export const salesContacts: SalesContact[] = [
 ];
 
 /**
- * Obtém o contato de vendas apropriado baseado no segmento
+ * Obtém o contato de vendas.
+ * Agora todo o direcionamento é feito exclusivamente para o Davyd.
  */
 export const getSalesContact = (segmentId?: string): SalesContact => {
-  // Mapear segmentos para vendedores específicos
-  const segmentMapping: { [key: string]: string[] } = {
-    frigorificos: ['João Pedro Monteiro'],
-    pescados: ['João Pedro Monteiro'],
-    laticinios: ['Davyd Brasil'],
-    bobinas: ['Davyd Brasil'], // Segmento industrial
-    'naturais-e-regionais': ['Davyd Brasil', 'João Pedro Monteiro'], // Aleatório entre os dois
-  };
-
-  const assignedSellers = segmentMapping[segmentId || ''];
-
-  if (!segmentId || !assignedSellers || assignedSellers.length === 0) {
-    // Se não houver segmento específico ou mapeamento, usa horário para decidir
-    // Minuto par = João Pedro, Minuto ímpar = Davyd
-    const currentMinute = new Date().getMinutes();
-    const isEvenMinute = currentMinute % 2 === 0;
-    return isEvenMinute
-      ? salesContacts.find((c) => c.name === 'João Pedro Monteiro') ||
-          salesContacts[0]
-      : salesContacts.find((c) => c.name === 'Davyd Brasil') ||
-          salesContacts[1];
-  }
-
-  if (assignedSellers.length === 1) {
-    // Retorna o vendedor específico
-    const contact = salesContacts.find((c) => c.name === assignedSellers[0]);
-    return contact || salesContacts[0];
-  }
-
-  // Se há múltiplos vendedores, usa horário para escolher
-  // Minuto par = João Pedro, Minuto ímpar = Davyd
-  const currentMinute = new Date().getMinutes();
-  const isEvenMinute = currentMinute % 2 === 0;
-  const selectedSellerName = isEvenMinute
-    ? assignedSellers.includes('João Pedro Monteiro')
-      ? 'João Pedro Monteiro'
-      : assignedSellers[0]
-    : assignedSellers.includes('Davyd Brasil')
-    ? 'Davyd Brasil'
-    : assignedSellers[0];
-
-  const contact = salesContacts.find((c) => c.name === selectedSellerName);
-  return contact || salesContacts[0];
+  void segmentId;
+  return salesContacts.find((c) => c.name === 'Davyd Brasil') || salesContacts[0];
 };
 
 /**

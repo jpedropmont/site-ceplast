@@ -5,7 +5,7 @@ import Header from '../../../components/Header';
 import Footer from '../../../components/Footer';
 import Image from 'next/image';
 import { ArrowRight, Shield, Waves, Fish } from 'lucide-react';
-import { generateWhatsAppURL } from '@/utils/whatsapp';
+import { WhatsAppTrackedLink } from '@/components/WhatsAppTrackedLink';
 
 export default function PescadosPage() {
   const products = [
@@ -68,8 +68,10 @@ export default function PescadosPage() {
                 qualidade superior.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href={generateWhatsAppURL('quote', 'pescados')}
+                <WhatsAppTrackedLink
+                  analyticsLocation="page_pescados_hero_whatsapp"
+                  waContext="quote"
+                  segmentId="pescados"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 font-bold rounded-lg hover:bg-[#128C7E] transition-all duration-300"
@@ -83,7 +85,7 @@ export default function PescadosPage() {
                   </svg>
                   Solicitar Orçamento
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                </WhatsAppTrackedLink>
               </div>
             </div>
             <div className="animate-fade-in-right">
@@ -161,15 +163,17 @@ export default function PescadosPage() {
             Garanta que seus produtos pesqueiros cheguem ao consumidor com todo
             frescor e qualidade.
           </p>
-          <a
-            href={generateWhatsAppURL('quote', 'pescados')}
+          <WhatsAppTrackedLink
+            analyticsLocation="page_pescados_footer_whatsapp"
+            waContext="quote"
+            segmentId="pescados"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center bg-[#25D366] text-white px-10 py-5 font-bold text-lg rounded-lg hover:bg-[#128C7E] transition-all duration-300 animate-fade-in-up animate-delay-400"
           >
             Falar com Especialista
             <ArrowRight className="ml-3 h-6 w-6" />
-          </a>
+          </WhatsAppTrackedLink>
         </div>
       </section>
 
