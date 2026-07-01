@@ -2,6 +2,7 @@
 
 import { track } from '@vercel/analytics';
 import type { ComponentProps, MouseEvent } from 'react';
+import { reportGoogleAdsConversion } from '@/lib/googleAds';
 import { generateWhatsAppURL } from '@/utils/whatsapp';
 
 export type WhatsAppMessageContext = 'general' | 'segment' | 'quote';
@@ -33,6 +34,7 @@ export function WhatsAppTrackedLink({
           wa_context: waContext,
           ...(segmentId ? { segment_id: segmentId } : {}),
         });
+        reportGoogleAdsConversion();
         onClick?.(e);
       }}
     />
